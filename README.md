@@ -26,7 +26,7 @@ function hashValue(password: number): number{ // input value
  
   const hash =  10 + (password % 2); // hash function
  
-  console.log(`Original Password: ${password} || Hashed Value: ${hash}`); // output (hashed) value
+  console.log(`Original Password: ${password} --> Hashed Value: ${hash}`); // output (hashed) value
  
   return hash;
 }
@@ -35,10 +35,10 @@ function hashValue(password: number): number{ // input value
 Here are examples of values that give the same hash with the following function ```hashValue()``` even though the input value was different:
 
 ```ts
-Original Password: 4    ||  Hashed Value: 10
-Original Password: 8    ||  Hashed Value: 10
-Original Password: 32   ||  Hashed Value: 10
-Original Password: 800  ||  Hashed Value: 10
+Original Password: 4    -->     Hashed Value: 10
+Original Password: 8    -->     Hashed Value: 10
+Original Password: 32   -->     Hashed Value: 10
+Original Password: 800  -->     Hashed Value: 10
 ```
 
 This is a clear demonstration of collision taking place. If the above function was used in our blockchain, criminals could very easily defraud the chain by replacing blocks with fraudulent content that produces the same hash as the legitamate block (in our case, simply any even number). Some popular collision resistant hashing algorithms that we could use include:
