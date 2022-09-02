@@ -114,4 +114,5 @@ Usually, blocks in a blockchain require the hashes to start with specific values
 }
 ```
 
-The hash of the block does not start with ```0000```, thus it is not valid. For the sake of argument, lets say adding ```23762``` to the end of the data suddenly generates a hash that starts with ```0000```: ```John paid Ben $15.23762 -> 00008a2fcae4ed68ff9ca2b2e85a4256ae103fa11dc0e3461ee63a255be9f6b2```
+The hash of the block does not start with ```0000```, thus it is not valid. For the sake of argument, lets say adding ```23762``` to the end of the data suddenly generates a hash that starts with ```0000```:  
+```John paid Ben $15.23762 -> 00008a2fcae4ed68ff9ca2b2e85a4256ae103fa11dc0e3461ee63a255be9f6b2```
