@@ -104,7 +104,7 @@ Even though the value of cryptocurrencies is related to the usage of that curren
 Usually, blocks in a blockchain require the hashes to start with specific values, such as several 0s. You need to include the data of the transactions plus a custom added value to later the hash to produce the 0s at the start. For example, *Bitcoin* currently needs 19 0s at the start of a block for that block to be valuable. The more 0s needed at the start, the harder the block is to mine. For the sake of simplicity, lets say our blockchain needs the hash of the block to start with ```0000```:
 
 #### Simplified Block:
-```js
+```json
 {
     "id": 3,
     "timeStamp": "23-11-2022 15:13:27",
@@ -116,3 +116,9 @@ Usually, blocks in a blockchain require the hashes to start with specific values
 
 The hash of the block does not start with ```0000```, thus it is not valid. For the sake of argument, lets say adding ```23762``` to the end of the data suddenly generates a hash that starts with ```0000```:  
 ```John paid Ben $15.23762 -> 00008a2fcae4ed68ff9ca2b2e85a4256ae103fa11dc0e3461ee63a255be9f6b2```
+
+This appended special value that we found is called a *nonce* and every block involves miners calculating what this nonce value could be to validate the block to start with the 0s. Finding this nonce is used as a *proof of work*.
+
+### The Zeroes
+
+The number of miners partaking in a blockchain directly determines how many zeroes are required in the hashed value of a block. This is because a blockchain wants to keep a systematic rate of new blocks being added to the chain for security reasons (roughly a block every 10/15 minutes is a good rate). The reason for this is so that every block can be checked in due time while still not taking too long to verify existing transactions and add another block to the chain to keep the cryptocurrency end-users happy. Furthermore, it is important to note that in real blockchains, usually each block concatenate several transactions (around 2500 per block) for efficiency reasons.
