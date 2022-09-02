@@ -71,22 +71,21 @@ The first block in a blockchain does not have a hash value for a previous block 
     "blocks": [
         {
             "id": 0,
-            "timeStamp": "2022-8-4 11:0:23", 
+            "timeStamp": "4-8-2022 11:0:23", 
             "data": "Genesis Block",
             "hash": "89eb0ac031a63d2421cd05a2fbe41f3ea35f5c3712ca839cbf6b85c4ee07b7a3",
             "previousHash": ""
         },
         {
             "id": 1,
-            "timeStamp": "2022-8-4 11:15:38",
+            "timeStamp": "4-8-2022 11:15:38",
             "data": "John paid Oliver $20.",
             "hash": "1082573a933a0089ded219847c9f49a11b621471d57d083d1b63dfb58fc3d3b0",
             "previousHash": "89eb0ac031a63d2421cd05a2fbe41f3ea35f5c3712ca839cbf6b85c4ee07b7a3"
-
         },
         {
             "id": 2,
-            "timeStamp": "2022-8-4 11:23:47",
+            "timeStamp": "4-8-2022 11:23:47",
             "data": "Jack paid Jacob $25.",
             "hash": "5fa522ae07f540e3d8dfbcbe2a904f51fcc5e6cfa2c6fcb6446eef6cfde8005c",
             "previousHash": "1082573a933a0089ded219847c9f49a11b621471d57d083d1b63dfb58fc3d3b0"
@@ -94,8 +93,25 @@ The first block in a blockchain does not have a hash value for a previous block 
     ]
 }
 ```
-*for simplicity we note timestamp here in human-readable string format, but usually an integer would be used for this*
+*For simplicity we note the timestamps here in a human-readable string format, however usually, an integer would be used for this.*
 
 If a criminal is able to recreate all three blocks in subsequent order with the same hashes but different data (such as ```"John paid Oliver $2000"``` for the second block) then that would be a succesful defraud. To prevent this from happening, a blockchain requires algorithms to be solved which takes time and resources. This work that is done to find the next block in the chain through solving the algorithm is what is known as block mining.
 
 ## Block Mining
+
+Even though the value of cryptocurrencies is related to the usage of that currency in every day life as well as it's supply, the incentive for miners to solve the math problems required by a particular blockchain also determines this value. Usually blocks need to be aproved by other miners, thus the more people mining in a blockchain, the more secure it becomes.
+
+Usually, blocks in a blockchain require the hashes to start with specific values, such as several 0s. You need to include the data of the transactions plus a custom added value to later the hash to produce the 0s at the start. For example, *Bitcoin* currently needs 19 0s at the start of a block for that block to be valuable. The more 0s needed at the start, the harder the block is to mine. For the sake of simplicity, lets say our blockchain needs the hash of the block to start with ```0000```:
+
+#### Simplified Block:
+```js
+{
+    "id": 3,
+    "timeStamp": "23-11-2022 15:13:27",
+    "data": "John paid Ben $15.",
+    "hash": "f751d556018521c65e05a8560599842523f24195c1dc7e83f043c6d9190639e3",
+    "previousHash": "5fa522ae07f540e3d8dfbcbe2a904f51fcc5e6cfa2c6fcb6446eef6cfde8005c"
+}
+```
+
+The hash of the block does not start with ```0000```, thus it is not valid. For the sake of argument, lets say adding ```23762``` to the end of the data suddenly generates a hash that starts with ```0000```: ```John paid Ben $15.23762 -> 00008a2fcae4ed68ff9ca2b2e85a4256ae103fa11dc0e3461ee63a255be9f6b2```
