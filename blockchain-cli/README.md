@@ -1,5 +1,6 @@
 # Running
-*Examples are using npm, although commands are identical or close to with any other package manager.*
+*Examples are using npm, although commands are identical or close to with any other package manager, although I guess that if you are using another package manager than npm, you know what you are doing.*
+
 ```js
 npm i
 ```
