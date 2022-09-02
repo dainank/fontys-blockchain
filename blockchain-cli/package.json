@@ -1,0 +1,14 @@
+{
+    "name": "chapter8_blockchain",
+    "version": "1.0.0",
+    "license": "MIT",
+    "scripts": {
+      "tsc": "tsc"
+    },
+    "devDependencies": {
+      "@types/node": "^10.5.1",
+      "typescript": "~3.0.0"
+    }
+  }
+  
+  

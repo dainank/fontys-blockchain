@@ -20,4 +20,8 @@ There are two versions of the program in this directory:
 # Links
 
 [Crypto Module](https://nodejs.org/api/crypto.html)
+
+# Other
+
+Yes, dist is in repo. If conflicts arise I can remove.
  
