@@ -71,7 +71,7 @@ The first block in a blockchain does not have a hash value for a previous block 
     "blocks": [
         {
             "id": 0,
-            "timeStamp": "2022-8-4 11:0:23", // for simplicity we note timestamp here in human-readable string format, but usually an integer would be used for this
+            "timeStamp": "2022-8-4 11:0:23", 
             "data": "Genesis Block",
             "hash": "89eb0ac031a63d2421cd05a2fbe41f3ea35f5c3712ca839cbf6b85c4ee07b7a3",
             "previousHash": ""
@@ -94,6 +94,7 @@ The first block in a blockchain does not have a hash value for a previous block 
     ]
 }
 ```
+*for simplicity we note timestamp here in human-readable string format, but usually an integer would be used for this*
 
 If a criminal is able to recreate all three blocks in subsequent order with the same hashes but different data (such as ```"John paid Oliver $2000"``` for the second block) then that would be a succesful defraud. To prevent this from happening, a blockchain requires algorithms to be solved which takes time and resources. This work that is done to find the next block in the chain through solving the algorithm is what is known as block mining.
 
