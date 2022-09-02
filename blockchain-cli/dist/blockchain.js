@@ -41,4 +41,5 @@ console.log('Mining block #1...\n');
 blockchain.addBlock('Block One');
 console.log('Mining block #2...\n');
 blockchain.addBlock('Block Two');
+console.log('Entire Chain:\n');
 console.log(JSON.stringify(blockchain, null, 2));

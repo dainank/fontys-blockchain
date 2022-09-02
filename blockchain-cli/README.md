@@ -20,7 +20,9 @@ There are two versions of the program in this directory:
 - with proof of work: 
     1. mine hash starting with ```0000``` (SHA-256)
     2. store reference of previous block's hash
-    3. Add data and metadata 
+    3. Add data and metadata
+
+The proof of work is a more realistic demo of a blockchain since essentially any blockchain in production has the proof of work functionality in place. It is recommended to first look through ```blockchain.ts``` before attempting to understand the ```bcProofOfWork.ts``` (duplicate comments are not carried over).
 
 # Links
 

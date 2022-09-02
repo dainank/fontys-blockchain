@@ -7,20 +7,20 @@ class Block {
         this.previousHash = previousHash;
         this.timestamp = timestamp;
         this.data = data;
-        const { nonce, hash } = this.mine();
+        const { nonce, hash } = this.mine(); // both generated through the new mine method
         this.nonce = nonce;
         this.hash = hash;
     }
     calculateHash(nonce) {
-        const data = this.index + this.previousHash + this.timestamp + this.data + nonce;
-        return crypto.createHash('sha256').update(data).digest('hex');
+        const data = this.index + this.previousHash + this.timestamp + this.data + nonce; // now additionally contains nonce on the end
+        return crypto.createHash('sha256').update(data).digest('hex'); // same commands as previously
     }
     mine() {
-        let hash;
         let nonce = 0;
+        let hash;
         do {
-            hash = this.calculateHash(++nonce);
-        } while (hash.startsWith('00000') === false);
+            hash = this.calculateHash(++nonce); // increment nonce per calculation
+        } while (hash.startsWith('0000') === false); // repeat until valid block is found (starts with 0000)
         return { nonce, hash };
     }
 }
@@ -28,8 +28,7 @@ class Block {
 class Blockchain {
     constructor() {
         this.chain = [];
-        // Create the genesis block.
-        this.chain.push(new Block(0, '0', Date.now(), 'Genesis block'));
+        this.chain.push(new Block(0, '0', Date.now(), 'Genesis Block'));
     }
     get latestBlock() {
         return this.chain[this.chain.length - 1];
@@ -39,10 +38,11 @@ class Blockchain {
         this.chain.push(block);
     }
 }
-console.log('Creating the blockchain with the genesis block...');
+console.log('Creating blockchain...\n');
 const blockchain = new Blockchain();
-console.log('Mining block #1...');
+console.log('Mining block #1...\n');
 blockchain.addBlock('First block');
-console.log('Mining block #2...');
+console.log('Mining block #2...\n');
 blockchain.addBlock('Second block');
+console.log('Entire Chain:\n');
 console.log(JSON.stringify(blockchain, null, 2));

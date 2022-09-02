@@ -1,68 +1,68 @@
 import * as crypto from 'crypto';
 
 class Block {
-  readonly nonce: number;
-  readonly hash: string;
+    readonly nonce: number;   // unique custom value to generate valid block
+    readonly hash: string;
 
-  constructor (
-    readonly index: number,
-    readonly previousHash: string,
-    readonly timestamp: number,
-    readonly data: string
-  ) {
-    const { nonce, hash } = this.mine();
-    this.nonce = nonce;
-    this.hash = hash;
-  }
+    constructor(
+        readonly index: number,
+        readonly previousHash: string,
+        readonly timestamp: number,
+        readonly data: string
+    ) {
+        const { nonce, hash } = this.mine();    // both generated through the new mine method
+        this.nonce = nonce;
+        this.hash = hash;
+    }
 
-  private calculateHash(nonce: number): string {
-    const data = this.index + this.previousHash + this.timestamp + this.data + nonce;
-    return crypto.createHash('sha256').update(data).digest('hex');
-  }
+    private calculateHash(nonce: number): string {
+        const data = this.index + this.previousHash + this.timestamp + this.data + nonce;   // now additionally contains nonce on the end
+        return crypto.createHash('sha256').update(data).digest('hex');  // same commands as previously
+    }
 
-  private mine(): { nonce: number, hash: string } {
-    let hash: string;
-    let nonce = 0;
+    private mine(): { nonce: number, hash: string } {
+        let nonce = 0;
+        let hash: string;
 
-    do {
-      hash = this.calculateHash(++nonce);
-    } while (hash.startsWith('00000') === false);
+        do {
+            hash = this.calculateHash(++nonce);   // increment nonce per calculation
+        } while (hash.startsWith('0000') === false);   // repeat until valid block is found (starts with 0000)
 
-    return { nonce, hash };
-  }
+        return { nonce, hash };
+    }
 };
 
 class Blockchain {
-  private readonly chain: Block[] = [];
+    private readonly chain: Block[] = [];
 
-  private get latestBlock(): Block {
-    return this.chain[this.chain.length - 1];
-  }
+    private get latestBlock(): Block {
+        return this.chain[this.chain.length - 1];
+    }
 
-  constructor() {
-    // Create the genesis block.
-    this.chain.push(new Block(0, '0', Date.now(), 'Genesis block'));
-  }
+    constructor() {
+        this.chain.push(new Block(0, '0', Date.now(), 'Genesis Block'));
+    }
 
-  addBlock(data: string): void {
-    const block = new Block(
-      this.latestBlock.index + 1,
-      this.latestBlock.hash,
-      Date.now(),
-      data
-    );
+    addBlock(data: string): void {
+        const block = new Block(
+            this.latestBlock.index + 1,
+            this.latestBlock.hash,
+            Date.now(),
+            data
+        );
 
-    this.chain.push(block);
-  }
+        this.chain.push(block);
+    }
 }
 
-console.log('Creating the blockchain with the genesis block...');
+console.log('Creating blockchain...\n');
 const blockchain = new Blockchain();
 
-console.log('Mining block #1...');
+console.log('Mining block #1...\n');
 blockchain.addBlock('First block');
 
-console.log('Mining block #2...');
+console.log('Mining block #2...\n');
 blockchain.addBlock('Second block');
 
+console.log('Entire Chain:\n');
 console.log(JSON.stringify(blockchain, null, 2));
