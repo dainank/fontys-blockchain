@@ -2,7 +2,10 @@
 *Examples are using npm, although commands are identical or close to with any other package manager. I guess that if you are using another package manager than npm, you know what you are doing.*
 
 ```js
-npm i
+npm i   // install dependencies
+npm run tsc // compile TypeScript into JavaScript
+node dist/blockchain.js // run program
+node dist/bcProofOfWork.js // run proof-of-work variant program 
 ```
 
 # Info
