@@ -1,6 +1,6 @@
 import * as crypto from 'crypto';
 
-class Block {
+class Block {   // item
     readonly hash: string;
 
     constructor(
@@ -21,7 +21,7 @@ class Block {
     }
 };
 
-class Blockchain {
+class Blockchain {  // list
     private readonly chain: Block[] = [];
 
     private get latestBlock(): Block {
@@ -29,7 +29,6 @@ class Blockchain {
     }
 
     constructor() {
-        // Create the genesis block.
         this.chain.push(new Block(0, '0', Date.now(), 'Genesis block'));
     }
 
@@ -46,13 +45,14 @@ class Blockchain {
     }
 }
 
-console.log('Creating the blockchain with the genesis block...');
+console.log('Creating blockchain...\n');
 const blockchain = new Blockchain();
 
-console.log('Mining block #1...');
-blockchain.addBlock('First block');
+console.log('Mining block #1...\n');
+blockchain.addBlock('Block One');
 
-console.log('Mining block #2...');
-blockchain.addBlock('Second block');
+console.log('Mining block #2...\n');
+blockchain.addBlock('Block Two');
 
+console.log('Entire Chain:\n');
 console.log(JSON.stringify(blockchain, null, 2));
