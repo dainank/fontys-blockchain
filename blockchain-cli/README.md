@@ -1,5 +1,7 @@
 # Running
-*Examples are using npm, although commands are identical or close to with any other package manager. I guess that if you are using another package manager than npm, you know what you are doing.*
+__You can install and run the program here: https://github.com/dainank/fontys-blockchain/releases/tag/cli__
+
+*Examples are using npm, although commands are identical or close to with any other package manager. I suppose that if you are using another package manager than npm, you know what you are doing.*
 
 ```js
 npm i   // install dependencies
@@ -34,5 +36,5 @@ The proof of work is a more realistic demo of a blockchain since essentially any
 
 # Other
 
-Yes, dist is in repo. If conflicts arise I can remove.
+See dist for binary files, or go to the releases page.
  
