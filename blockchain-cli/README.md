@@ -22,7 +22,7 @@ There are two versions of the program in this directory:
     2. store reference of previous block's hash
     3. Add data and metadata
 - with proof of work: 
-    1. mine hash starting with ```0000``` (SHA-256)
+    1. mine hash starting with ```00000``` (SHA-256)
     2. store reference of previous block's hash
     3. Add data and metadata
 

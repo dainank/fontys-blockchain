@@ -26,7 +26,7 @@ class Block {
 
         do {
             hash = this.calculateHash(++nonce);   // increment nonce per calculation
-        } while (hash.startsWith('0000') === false);   // repeat until valid block is found (starts with 0000)
+        } while (hash.startsWith('00000') === false);   // repeat until valid block is found (starts with 0000)
 
         return { nonce, hash };
     }
@@ -70,7 +70,7 @@ function userSelection(): void {
     readline.question('Select Option: ', selection => {
         console.log("---------------------------------------------\n")
         if (selection === '1') {  // mining blocks
-            console.log("Mining block...")
+            console.log("Mining block... (estimated 1min)")
             blockchain.addBlock(`${Math.random()}`) // random data
             console.log("Block mined.\n")
         } else if (selection === '2') {   // view blockchain
