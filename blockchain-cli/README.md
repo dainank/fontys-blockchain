@@ -12,6 +12,8 @@ You can string the compile and run commands together to save time: ```npm run ts
 
 **Run program directly from repository root**: ```cd .\blockchain-cli\ && npm run tsc && node .\dist\bcProofOfWork.js```
 
+If you get errors with the above command, read them. You are probably executing the commands in the wrong directory.
+
 # Info
 
 There are two versions of the program in this directory:
