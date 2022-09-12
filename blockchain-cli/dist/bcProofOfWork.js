@@ -38,11 +38,35 @@ class Blockchain {
         this.chain.push(block);
     }
 }
-console.log('Creating blockchain...\n');
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 const blockchain = new Blockchain();
-console.log('Mining block #1...\n');
-blockchain.addBlock('First block');
-console.log('Mining block #2...\n');
-blockchain.addBlock('Second block');
-console.log('Entire Chain:\n');
-console.log(JSON.stringify(blockchain, null, 2));
+console.log('Welcome to Fontys blockchain!\n');
+userSelection();
+function userSelection() {
+    console.log('Options:\n1 - Mine Block\n2 - View Blockchain\n3 - Exit Program\n');
+    readline.question('Select Option: ', selection => {
+        console.log("---------------------------------------------\n");
+        if (selection === '1') { // mining blocks
+            console.log("Mining block...");
+            blockchain.addBlock(`${Math.random()}`); // random data
+            console.log("Block mined.\n");
+        }
+        else if (selection === '2') { // view blockchain
+            console.log("Viewing blockchain: ");
+            console.log(JSON.stringify(blockchain, null, 2));
+        }
+        else if (selection === '3') { // view blockchain
+            console.log("Exiting...");
+            readline.close();
+            process.exit(1);
+        }
+        else { // wrong input
+            console.log("Error, please select 1, 2 or 3.");
+        }
+        console.log("---------------------------------------------\n");
+        userSelection();
+    });
+}
