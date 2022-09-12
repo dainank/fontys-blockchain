@@ -10,6 +10,10 @@ node dist/bcProofOfWork.js // run proof-of-work variant program
 
 You can string the compile and run commands together to save time: ```npm run tsc && node dist/blockchain.js```
 
+**Run program directly from repository root**: ```cd .\blockchain-cli\ && npm run tsc && node .\dist\bcProofOfWork.js```
+
+If you get errors with the above command, read them. You are probably executing the commands in the wrong directory.
+
 # Info
 
 There are two versions of the program in this directory:
