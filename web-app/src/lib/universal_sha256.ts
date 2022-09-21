@@ -11,7 +11,7 @@ async function sha256_browser(data: string): Promise<string> {
     const hashByteArray = await crypto.subtle.digest('SHA-256', msgUint8Array); // converts bytes to hash SHA-256
 
     const hashArray = Array.from(new Uint8Array(hashByteArray));    // pass array
-
+    // 16 because hexadecimal radix are in 16
     const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join(''); // hashed value
     return Promise.resolve(hashHex);
 }
