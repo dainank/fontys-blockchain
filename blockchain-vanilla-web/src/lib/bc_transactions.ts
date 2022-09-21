@@ -1,7 +1,7 @@
 // SOURCE CODE OF HASHING LIBRARY (blockchain creation, block mining, creating hashes (browser/node))
 import { sha256 } from './universal_sha256.js';
 
-export interface Transaction {
+export interface Transaction {  // consider separating interface
   readonly sender: string;
   readonly recipient: string;
   readonly amount: number;
@@ -23,7 +23,7 @@ export class Block {
     } while (this.hash.startsWith('0000') === false);
   }
 
-  private async calculateHash(nonce: number): Promise<string> {
+  private async calculateHash(nonce: number): Promise<string> { // adding up all diff variables
     const data = this.previousHash + this.timestamp + JSON.stringify(this.transactions) + nonce;
     return sha256(data);
   }

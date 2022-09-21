@@ -65,10 +65,10 @@ const transferBtn           = document.getElementById('transfer') as HTMLButtonE
 function toggleState(confirmation: boolean, transferForm: boolean): void {
   transferBtn.disabled = amountEl.disabled = senderEl.disabled = recipientEl.disabled = transferForm;
   confirmBtn.disabled = confirmation;
-}
+} // control multiple elements simultaneously
 
 
-function generateBlockHtml(block: Block, index: number) {
+function generateBlockHtml(block: Block, index: number) { // insert HTML
   return `
     <div class="block">
       <span class="block__index">#${index}</span>
