@@ -1,4 +1,4 @@
-:root {
+:root { /* selects HTML */
   --bg-color: #fff;
   --border-color: #eaeaea;
   --text-color: #000;
@@ -135,16 +135,6 @@ form {
   position: relative;
   text-overflow: ellipsis;
 }
-/* 
-.prev-hash .hash-value {
-  padding-left: 15px;
-} */
-
-/* .prev-hash .hash-value:before {
-  content: '←';
-  position: absolute;
-  left: 0;
-} */
 
 .block__timestamp {
   color: var(--secondary-text-color);
@@ -174,11 +164,8 @@ input[type=text], input[type=number] {
   line-height: 27px;
   width: 100%;
   box-shadow: none;
-  /* border-width: initial;
-  border-style: none; */
   border-color: initial;
   border-image: initial;
-  /* border-radius: 0px; */
   padding: 4px 10px;
   margin: 0px auto;
   outline: none;
