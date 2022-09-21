@@ -1,4 +1,4 @@
-// SOURCE CODE OF HASHING LIBRARY
+// SOURCE CODE OF HASHING LIBRARY (blockchain creation, block mining, creating hashes (browser/node))
 import { sha256 } from './universal_sha256.js';
 
 export interface Transaction {

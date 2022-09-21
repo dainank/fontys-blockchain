@@ -1,4 +1,4 @@
-// SRC CODE OF STANDALONE CLIENT
+// SRC CODE OF STANDALONE CLIENT (utilizes code from lib)
 import { Blockchain } from '../lib/bc_transactions';
 
 (async function main(): Promise<void> {

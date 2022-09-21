@@ -1,3 +1,4 @@
+// logic and UI for blockchain web app
 import { Blockchain, Block } from '../lib/bc_transactions.js';
 
 enum Status { // status strings
