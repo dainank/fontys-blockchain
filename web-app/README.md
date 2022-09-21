@@ -1,22 +1,21 @@
 # Running
-__You can install and run the program here: https://github.com/dainank/fontys-blockchain/releases/tag/cli__
-
+Run from root directory if not sure, that is here: https://github.com/dainank/fontys-blockchain/tree/main/web-app
 ```js
 npm install
-tsc
 npm start
 ```
+*Since dist files are included in repo, the above should work on any device anywhere.*
 
-## Additional Commands
+## If you Change Source Code:
+Copy HTML/CSS files to dist folder.
 ```js
 npm run deploy
 ```
-Copy HTML/CSS files to dist folder.
 
+Runs TypeScript compiler and then deploys.
 ```js
 npm run compileDeploy
 ```
-Runs TypeScript compiler and then deploys.
 
 # Info
 
@@ -26,5 +25,5 @@ Runs TypeScript compiler and then deploys.
 
 # Other
 
-See dist for binary files, or go to the releases page.
+See dist for binary files.
  
