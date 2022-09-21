@@ -2,7 +2,10 @@
 This is the specialization project source code for my 6th semester, Cyber Security (adv). The goal of the project is to develop a fully functional and secure blockchain. There will be several subprojects within this repository. Filestructure is as follows:
 
 ```
-- blockchain-cli [CLI sub-project]
+- cli [CLI sub-project]
+    - src   | source code
+    - dist  | binaries
+- web-app [Browser sub-project]
     - src   | source code
     - dist  | binaries
 ```
