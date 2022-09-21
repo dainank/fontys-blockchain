@@ -1,5 +1,5 @@
 # Running
-Run from root directory if not sure, that is here: https://github.com/dainank/fontys-blockchain/tree/main/web-app
+Run from root directory: https://github.com/dainank/fontys-blockchain/tree/main/web-app
 ```js
 npm install
 npm start
@@ -18,6 +18,7 @@ npm run compileDeploy
 ```
 
 # Info
+See DOCX for documentation on how this application functions.
 
 # Links
 
