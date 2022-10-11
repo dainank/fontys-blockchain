@@ -1,5 +1,5 @@
 # Running
-Run from root directory: https://github.com/dainank/fontys-blockchain/tree/main/web-app
+Run from `./web-app` directory: https://github.com/dainank/fontys-blockchain/tree/main/web-app
 ```js
 npm install
 npm start
