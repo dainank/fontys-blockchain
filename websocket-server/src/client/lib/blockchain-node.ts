@@ -49,9 +49,7 @@ export class BlockchainNode {
   }
 
   async mineBlockWith(transactions: Transaction[]): Promise<Block> {
-    // NOTE: INTRODUCING A RANDOM DELAY FOR DEMO PURPOSES.
-    // We want to randomize block's timestamp creation so the node that generates transactions
-    // doesn't have an advantage since it's timestamp will always be earlier.
+    // note: random delay is for demo purposes
     await randomDelay(500);
 
     const block = { previousHash: this.latestBlock.hash, timestamp: Date.now(), transactions };

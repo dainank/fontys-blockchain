@@ -11,9 +11,9 @@ Previous projects only supported a single miner adding blocks with transaction d
 
 ## Running
 1. Run Server (choose one):
-- `node build/server/main.js`
-- `nodemon build/server/main.js`
-- `npx nodemon build/server/main.js`
+  - `node build/server/main.js`
+  - `nodemon build/server/main.js`
+  - `npx nodemon build/server/main.js`
 
 ## Dependencies
 - **ws** - Node.js library that supports Websocket protocol.
