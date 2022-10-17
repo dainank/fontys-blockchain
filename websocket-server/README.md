@@ -4,11 +4,31 @@ Previous projects only supported a single miner adding blocks with transaction d
 
 ## Installing & Running
 
+## Installing
+- `npm install -g nodemon`
+- `npm i`
+
+## Running
+```node build/server/main.js```
+
 ## Dependencies
 - **ws** - Node.js library that supports Websocket protocol.
 - **express** - Tiny Node.js framework for HTTP support.
 - **nodemon** - Dev tool that restarts Node.js apps when change in script detected.
 - **lit-html** - HTML templates for rendering in DOM.
+
+## File Structure
+
+
+```
+- public [created during build]
+    - index.html    | compiled client/main.ts, essentially web client
+- src    [src code]
+    - client        | client impl
+    - server        | server impl
+        - main.ts   | code that starts Websocket and notification servers
+    - shared        | shared files for client and server
+```
 
 ## Key Topics
 
