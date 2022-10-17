@@ -17,6 +17,10 @@ Usually a blockchain has **many blocks** (e.g. 100 blocks) and a **pool of pendi
 
 ![Forked Blockchain](https://github.com/dainank/fontys-blockchain/blob/WebsocketServer/websocket-server/assets/images/forked-blockchain.png)
 
+The three unconfirmed blocks mined by the miners are all potentionally valid but this is where the **longest chain rule** comes in. Lets say there are two other miners M4 and M5. Each picks a block to build upon from the three 101 blocks available to mine the 102 block. M4 may pick M2's block while M5 picks M3's block (usually at random since mining is an automated process). Lets say M5 finishes mining the block 102 first and a sixth miner M6 then picks that one up and finds the next block, the chain would then look as follows:
+
+![Forked Blockchain](https://github.com/dainank/fontys-blockchain/blob/WebsocketServer/websocket-server/assets/images/forked-blockchain-adv.jpg)
+
 ### Emulating More Than One Miner
 
 ### The WebSocket Protocol
