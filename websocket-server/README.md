@@ -29,3 +29,12 @@ Imagine that there is a criminal called John who wants to gain coins worth $1000
 ### Emulating More Than One Miner
 
 ### The WebSocket Protocol
+It is key to understand that the server we add here is not a central authority but rather a server for utility services:
+- caching hashes
+- broadcasting new transactions
+- requesting for longest chain
+- announcing newly created blocks
+
+Essentially nothing can be created, validated or stored with this server, it simply returns info.
+
+Miners would utilize the above server to pick pending transactions and to see which block to build upon by requesting the longest chain.
