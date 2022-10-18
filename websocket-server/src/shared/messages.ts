@@ -1,16 +1,16 @@
-export type UUID = string;
+export type UUID = string; // code readability
 
-// TODO: introduce stronger typing based on type literals.
+// message object format
 export interface Message {
-  correlationId: UUID;
+  correlationId: UUID; // also string, see alias above
   type: string;
-  payload?: any;
+  payload?: any; // optional
 }
 
-// TODO: find out whether request / response prefixes can be generated with mapped types.
+// 4 message types accepted in our implementation
 export enum MessageTypes {
   GetLongestChainRequest  = 'GET_LONGEST_CHAIN_REQUEST',
   GetLongestChainResponse = 'GET_LONGEST_CHAIN_RESPONSE',
-  NewBlockRequest         = 'NEW_BLOCK_REQUEST',
-  NewBlockAnnouncement    = 'NEW_BLOCK_ANNOUNCEMENT'
+  NewBlockRequest         = 'NEW_BLOCK_REQUEST',          // when mining starts
+  NewBlockAnnouncement    = 'NEW_BLOCK_ANNOUNCEMENT'      // when mining complete
 }

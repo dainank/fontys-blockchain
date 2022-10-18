@@ -25,12 +25,13 @@ Previous projects only supported a single miner adding blocks with transaction d
 
 ```
 - public [created during build]
-    - index.html    | compiled client/main.ts, essentially web client
+    - index.html        | compiled client/main.ts, essentially web client
 - src    [src code]
-    - client        | client impl
-    - server        | server impl
-        - main.ts   | code that starts Websocket and notification servers
-    - shared        | shared files for client and server
+    - client            | client impl
+    - server            | server impl
+        - main.ts       | code that starts Websocket and notification servers
+    - shared            | shared files for client and server
+        - messages.ts   | messages that can be sent over WS
 ```
 
 ## Key Topics

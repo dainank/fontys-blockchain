@@ -2,14 +2,14 @@ import * as WebSocket from 'ws';
 import { Message, MessageTypes, UUID } from '../shared/messages';
 import { MessageServer } from './message-server';
 
-type Replies = Map<WebSocket, Message>;
+type Replies = Map<WebSocket, Message>; // replies from nodes
 
-export class BlockchainServer extends MessageServer<Message> {
+export class BlockchainServer extends MessageServer<Message> { // see constructor
     private readonly receivedMessagesAwaitingResponse = new Map<UUID, WebSocket>();
 
     private readonly sentMessagesAwaitingReply = new Map<UUID, Replies>(); // Used as accumulator for replies from clients.
 
-    protected handleMessage(sender: WebSocket, message: Message): void {
+    protected handleMessage(sender: WebSocket, message: Message): void {    // call up appropriate method based on received msg
         switch (message.type) {
             case MessageTypes.GetLongestChainRequest : return this.handleGetLongestChainRequest(sender, message);
             case MessageTypes.GetLongestChainResponse: return this.handleGetLongestChainResponse(sender, message);
@@ -21,15 +21,13 @@ export class BlockchainServer extends MessageServer<Message> {
         }
     }
 
-    private handleGetLongestChainRequest(requestor: WebSocket, message: Message): void {
-        // If there are other nodes in the network ask them about their chains.
-        // Otherwise immediately reply to the requestor with an empty array.
+    private handleGetLongestChainRequest(requestor: WebSocket, message: Message): void { // client asking for longest chain
 
-        if (this.clientIsNotAlone) {
+        if (this.clientIsNotAlone) {    // ask other nodes about their chains
             this.receivedMessagesAwaitingResponse.set(message.correlationId, requestor);
             this.sentMessagesAwaitingReply.set(message.correlationId, new Map()); // Map accumulates replies from clients
             this.broadcastExcept(requestor, message);
-        } else {
+        } else {    // no other nodes, blockchain must be empty
             this.replyTo(requestor, {
                 type: MessageTypes.GetLongestChainResponse,
                 correlationId: message.correlationId,
@@ -38,14 +36,14 @@ export class BlockchainServer extends MessageServer<Message> {
         }
     }
 
-    private handleGetLongestChainResponse(sender: WebSocket, message: Message): void {
+    private handleGetLongestChainResponse(sender: WebSocket, message: Message): void { // client sending longest chain
         if (this.receivedMessagesAwaitingResponse.has(message.correlationId)) {
             const requestor = this.receivedMessagesAwaitingResponse.get(message.correlationId);
 
             if (this.everyoneReplied(sender, message)) {
                 const allReplies = this.sentMessagesAwaitingReply.get(message.correlationId).values();
                 const longestChain = Array.from(allReplies).reduce(this.selectTheLongestChain);
-                this.replyTo(requestor, longestChain);
+                this.replyTo(requestor, longestChain); // response sent to client
             }
         }
     }
@@ -58,8 +56,6 @@ export class BlockchainServer extends MessageServer<Message> {
         this.broadcastExcept(requestor, message);
     }
 
-    // NOTE: naive implementation that assumes no clients added or removed after the server requested the longest chain.
-    // Otherwise the server may await a reply from a client that has never received the request.
     private everyoneReplied(sender: WebSocket, message: Message): boolean {
         const repliedClients = this.sentMessagesAwaitingReply
             .get(message.correlationId)
@@ -67,14 +63,14 @@ export class BlockchainServer extends MessageServer<Message> {
 
         const awaitingForClients = Array.from(this.clients).filter(c => !repliedClients.has(c));
 
-        return awaitingForClients.length === 1; // 1 - the one who requested.
+        return awaitingForClients.length === 1; // check if all clients replied
     }
 
     private selectTheLongestChain(currentlyLongest: Message, current: Message, index: number) {
         return index > 0 && current.payload.length > currentlyLongest.payload.length ? current : currentlyLongest;
     }
 
-    private get clientIsNotAlone(): boolean {
+    private get clientIsNotAlone(): boolean { // check is more than one node in blockchain
         return this.clients.size > 1;
     }
 }
