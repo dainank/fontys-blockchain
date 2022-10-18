@@ -19,6 +19,7 @@ Previous projects only supported a single miner adding blocks with transaction d
 - **express** - Tiny Node.js framework for HTTP support.
 - **nodemon** - Dev tool that restarts Node.js apps when a change in the script is detected.
 - **lit-html** - HTML templates for rendering in DOM.
+> ```@types/package``` is used to provide TypeScript support for the npm packages above.
 
 ## File Structure
 
@@ -103,3 +104,9 @@ When starting the application the following happens:
   - other miners add this block usually to their blockchain
 
 ![Sequence Diagram](https://github.com/dainank/fontys-blockchain/blob/WebsocketServer/websocket-server/assets/images/sequence-diagram.jpg)
+
+### Data | Server -> Client
+1. client opens web-app
+2. server initiates communications
+3. server pushes data to the browser client
+
