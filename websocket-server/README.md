@@ -37,7 +37,7 @@ Previous projects only supported a single miner adding blocks with transaction d
 ## Key Topics
 
 ### Longest Chain Rule
-A blockchain usually has **many blocks** (e.g. 100 blocks) and a **pool of pending transactions**, whereby various miners pick different transactions for their next blocks (e.g. 10 transactions). This means that if miners, M1, M2 and M3 all submit their next block for the chain (block 101 since there are already 100 before), each submitted block will contain different transactions:
+A blockchain usually has **many blocks** (e.g. 100 blocks) and a **pool of pending transactions**, whereby various miners pick different transactions for their next blocks (e.g. 10 transactions). This means that if miners, M1, M2, and M3 all submit their next block for the chain (block 101 since there are already 100 before), each submitted block will contain different transactions:
 
 ![Forked Blockchain](https://github.com/dainank/fontys-blockchain/blob/WebsocketServer/websocket-server/assets/images/forked-blockchain.png)
 
@@ -111,6 +111,19 @@ When starting the application the following happens:
   - other miners add this block usually to their blockchain
 
 ![Sequence Diagram](https://github.com/dainank/fontys-blockchain/blob/WebsocketServer/websocket-server/assets/images/sequence-diagram.jpg)
+
+### Opening Web Application
+1. Two clients open the web-app
+2. The second client requests the longest chain
+3. The server broadcasts the longest chain request to all other clients
+4. The first client receives the broadcast and returns the message with its own longest chain.
+5. The second client receives the longest chain in the message payload.
+
+### Mining A Block, Broadcasting, and Receiving It
+After the first client clicks on the **GENERATE BLOCK** button:
+1. The block mining process is started and other nodes are requested to do so too through a message.
+2. Once mining is complete, the first client announced the new candidate block with a new message.
+3. The second client will receive this message and update their chain with the block.
 
 ### Data | Server -> Client
 1. client opens web-app

@@ -50,7 +50,7 @@ Original Password: 32   -->   Hashed Value: 10
 Original Password: 800  -->   Hashed Value: 10
 ```
 
-This is a clear demonstration of collision taking place. If the above function was used in our blockchain, criminals could very easily defraud the chain by replacing blocks with fraudulent content that produces the same hash as the legitamate block (in our case, simply any even number). Some popular collision resistant hashing algorithms that we could use include:
+This is a clear demonstration of a collision taking place. If the above function was used in our blockchain, criminals could very easily defraud the chain by replacing blocks with fraudulent content that produces the same hash as the legitamate block (in our case, simply any even number). Some popular collision resistant hashing algorithms that we could use include:
 
 - SHA-256
 - SHA-512

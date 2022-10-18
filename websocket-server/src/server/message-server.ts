@@ -2,11 +2,11 @@ import * as WebSocket from 'ws';
 
 export abstract class MessageServer<T> {
   constructor(private readonly wsServer: WebSocket.Server) {
-    this.wsServer.on('connection', this.subscribeToMessages);
-    this.wsServer.on('error', this.cleanupDeadClients);
+    this.wsServer.on('connection', this.subscribeToMessages); // pick up connecting or connected connections from clients
+    this.wsServer.on('error', this.cleanupDeadClients); // cleanup closing or closed connections from clients
   }
 
-  protected abstract handleMessage(sender: WebSocket, message: T): void;
+  protected abstract handleMessage(sender: WebSocket, message: T): void; // definition, impl in blockchain class
 
   protected readonly subscribeToMessages = (ws: WebSocket): void => {
     ws.on('message', (data: WebSocket.Data) => {
@@ -26,7 +26,8 @@ export abstract class MessageServer<T> {
     });
   };
 
-  protected broadcastExcept(currentClient: WebSocket, message: Readonly<T>): void {
+// Broadcasting and Replying to Clients
+  protected broadcastExcept(currentClient: WebSocket, message: Readonly<T>): void { // broadcast all
     this.wsServer.clients.forEach(client => {
       if (this.isAlive(client) && client !== currentClient) {
         client.send(JSON.stringify(message));
@@ -34,7 +35,7 @@ export abstract class MessageServer<T> {
     });
   }
 
-  protected replyTo(client: WebSocket, message: Readonly<T>): void {
+  protected replyTo(client: WebSocket, message: Readonly<T>): void { // reply to single node
     client.send(JSON.stringify(message));
   }
 
@@ -46,7 +47,7 @@ export abstract class MessageServer<T> {
     return !this.isDead(client);
   }
 
-  private isDead(client: WebSocket): boolean {
+  private isDead(client: WebSocket): boolean { // check if client in disconnecting or disconnected state
     return (
       client.readyState === WebSocket.CLOSING ||
       client.readyState === WebSocket.CLOSED
