@@ -3,7 +3,6 @@
 Previous projects only supported a single miner adding blocks with transaction data. If multiple miners wish to contribute to a blockchain at the same time, we will need a server that broadcasts messages to the blockchain's nodes (all computers part of the blockchain). This project is a server using the **Websocket protocol** to do exactly so. Additionally, web clients (users) will also be able to make requests of this server.
 
 ## Installing & Running
-
 ## Installing
 1. `npm install -g nodemon`
 2. `npm i`
@@ -22,7 +21,6 @@ Previous projects only supported a single miner adding blocks with transaction d
 - **lit-html** - HTML templates for rendering in DOM.
 
 ## File Structure
-
 
 ```
 - public [created during build]
@@ -62,3 +60,13 @@ It is key to understand that the server we add here is not a central authority b
 Essentially nothing can be created, validated or stored with this server, it simply returns info.
 
 Miners would utilize the above server to pick pending transactions and to see which block to build upon by requesting the longest chain.
+
+## Walkthrough
+When starting the application the following happens:
+- client makes request to server to find longest chain
+- when transactions are pending, no requests are made
+- initiating mining process will broadcast a message
+- when block has been mined, the new block is broadcasted
+  - other miners add this block usually to their blockchain
+
+![Sequence Diagram](https://github.com/dainank/fontys-blockchain/blob/WebsocketServer/websocket-server/assets/images/sequence-diagram.jpg)
