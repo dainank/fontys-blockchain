@@ -17,6 +17,7 @@ export interface Block {
   readonly transactions: Transaction[];
 }
 
+// https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys
 export type WithoutHash<T> = Omit<T, 'hash'>;
 export type NotMinedBlock = Omit<Block, 'hash' | 'nonce'>;
 
