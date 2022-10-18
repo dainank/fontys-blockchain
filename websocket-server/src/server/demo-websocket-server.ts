@@ -6,7 +6,7 @@ const app = express(); // Instantiates Express framework
 
 // HTTP Server
 app.get('/', (req, res) => // when root path is reached, return this html file
-    res.sendFile(path.join(__dirname, '../../public/simple-websocket-client.html')));
+    res.sendFile(path.join(__dirname, '../../public/demo-websocket-client.html')));
 
 const httpServer = app.listen(8000, 'localhost', () => { // control client port
     console.log('HTTP server is listening on localhost:8000');
@@ -17,7 +17,7 @@ const wsServer = new Server({port:8085}); // control ws port
 console.log('WebSocket server is listening on localhost:8085');
 
 wsServer.on('connection',
-    wsClient => { // listen for send or onerror events
+    wsClient => { // if 'connection' event is received
         // push data messages
         wsClient.send('This message was pushed by the WebSocket server');
         // handles errors

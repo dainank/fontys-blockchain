@@ -3,12 +3,12 @@
 Previous projects only supported a single miner adding blocks with transaction data. If multiple miners wish to contribute to a blockchain at the same time, we will need a server that broadcasts messages to the blockchain's nodes (all computers are part of the blockchain). This project is a server using the **Websocket protocol** to do exactly so. Additionally, web clients (users) will also be able to make requests to this server.
 
 ## Installing & Running
-## Installing
+### Installing
 1. `npm install -g nodemon`
 2. `npm i`
 3. `npm run build`
 
-## Running
+### Running
 1. Run Server (choose one):
   - `node build/server/main.js`
   - `nodemon build/server/main.js`
@@ -71,6 +71,12 @@ Miners would utilize the above server to pick pending transactions and to see wh
   2. app invokes callback to handle received `connection` event
   3. client code expects a `message` event providing the callback
   4. `close` and `error` events handle appropriate tasks
+
+### Running Demo WebSocket Server:
+```js
+npm run build:server
+node build/server/demo-websocket-server.js
+```
 
 ### Usage Examples:
 Anything that requires immediate notification when an important event has happened elsewhere:
