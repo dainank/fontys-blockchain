@@ -8,7 +8,14 @@ This is the specialization project source code for my 6th semester, Cyber Securi
 - web-app [Browser sub-project]
     - src   | source code
     - dist  | binaries
+- websocket-server [Server sub-project]
+    - assets    | diagrams for README
+    - build     | transpiled TS files for running program
+    - public    | deployed files
+    - src       | source code
 ```
+
+**Please note that all implementations and practices of the blockchain within this project are *not* theories developed by me, but rather the standard practices in the industry that are being used by cryptocurrencies such as *Bitcoin*.**
 
 ## Block Chain Basics
 
