@@ -21,9 +21,10 @@ class MessageServer {
                 }
             });
         };
-        this.wsServer.on('connection', this.subscribeToMessages);
-        this.wsServer.on('error', this.cleanupDeadClients);
+        this.wsServer.on('connection', this.subscribeToMessages); // pick up connecting or connected connections from clients
+        this.wsServer.on('error', this.cleanupDeadClients); // cleanup closing or closed connections from clients
     }
+    // Broadcasting and Replying to Clients
     broadcastExcept(currentClient, message) {
         this.wsServer.clients.forEach(client => {
             if (this.isAlive(client) && client !== currentClient) {

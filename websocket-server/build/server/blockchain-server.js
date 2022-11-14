@@ -20,14 +20,12 @@ class BlockchainServer extends message_server_1.MessageServer {
         }
     }
     handleGetLongestChainRequest(requestor, message) {
-        // If there are other nodes in the network ask them about their chains.
-        // Otherwise immediately reply to the requestor with an empty array.
-        if (this.clientIsNotAlone) {
+        if (this.clientIsNotAlone) { // ask other nodes about their chains
             this.receivedMessagesAwaitingResponse.set(message.correlationId, requestor);
             this.sentMessagesAwaitingReply.set(message.correlationId, new Map()); // Map accumulates replies from clients
             this.broadcastExcept(requestor, message);
         }
-        else {
+        else { // no other nodes, blockchain must be empty
             this.replyTo(requestor, {
                 type: messages_1.MessageTypes.GetLongestChainResponse,
                 correlationId: message.correlationId,
@@ -41,7 +39,7 @@ class BlockchainServer extends message_server_1.MessageServer {
             if (this.everyoneReplied(sender, message)) {
                 const allReplies = this.sentMessagesAwaitingReply.get(message.correlationId).values();
                 const longestChain = Array.from(allReplies).reduce(this.selectTheLongestChain);
-                this.replyTo(requestor, longestChain);
+                this.replyTo(requestor, longestChain); // response sent to client
             }
         }
     }
@@ -51,14 +49,12 @@ class BlockchainServer extends message_server_1.MessageServer {
     handleNewBlockAnnouncement(requestor, message) {
         this.broadcastExcept(requestor, message);
     }
-    // NOTE: naive implementation that assumes no clients added or removed after the server requested the longest chain.
-    // Otherwise the server may await a reply from a client that has never received the request.
     everyoneReplied(sender, message) {
         const repliedClients = this.sentMessagesAwaitingReply
             .get(message.correlationId)
             .set(sender, message);
         const awaitingForClients = Array.from(this.clients).filter(c => !repliedClients.has(c));
-        return awaitingForClients.length === 1; // 1 - the one who requested.
+        return awaitingForClients.length === 1; // check if all clients replied
     }
     selectTheLongestChain(currentlyLongest, current, index) {
         return index > 0 && current.payload.length > currentlyLongest.payload.length ? current : currentlyLongest;
