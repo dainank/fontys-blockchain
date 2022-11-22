@@ -6,6 +6,7 @@ import { BlockchainServer } from './blockchain-server';
 
 const PORT = 3000;
 const app = express();
+app.disable("x-powered-by");
 app.use('/',             express.static(path.join(__dirname, '../../public'))); // location client code
 app.use('/node_modules', express.static(path.join(__dirname, '../../node_modules'))); // location node modules
 

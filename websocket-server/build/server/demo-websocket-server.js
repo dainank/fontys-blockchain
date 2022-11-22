@@ -4,6 +4,7 @@ const express = require("express");
 const path = require("path");
 const ws_1 = require("ws"); // websocket server
 const app = express(); // Instantiates Express framework
+app.disable("x-powered-by");
 // HTTP Server
 app.get('/', (req, res) => // when root path is reached, return this html file
  res.sendFile(path.join(__dirname, '../../public/demo-websocket-client.html')));

@@ -3,6 +3,7 @@ import * as path from "path";
 import {Server} from "ws"; // websocket server
 
 const app = express(); // Instantiates Express framework
+app.disable("x-powered-by");
 
 // HTTP Server
 app.get('/', (req, res) => // when root path is reached, return this html file
