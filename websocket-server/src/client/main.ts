@@ -9,7 +9,7 @@ let application = new Application(async () => {
      `render()` call invoked after `await 0` statement and the UI will reflect the most resent state. */
   if (!renderingIsInProgress) {
     renderingIsInProgress = true;
-    await 0;
+    await false;
     renderingIsInProgress = false;
     render(application.render(), document.body);
   }
