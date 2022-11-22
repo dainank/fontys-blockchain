@@ -1,4 +1,5 @@
 import * as crypto from 'crypto';
+import { cryptoRandom } from '../../websocket-server/src/client/ui/common.js';
 
 class Block {
     readonly nonce: number;   // unique custom value to generate valid block
@@ -71,7 +72,7 @@ function userSelection(): void {
         console.log("---------------------------------------------\n")
         if (selection === '1') {  // mining blocks
             console.log("Mining block... (estimated 1min)")
-            blockchain.addBlock(`${Math.random()}`) // random data
+            blockchain.addBlock(`${cryptoRandom()}`) // random data
             console.log("Block mined.\n")
         } else if (selection === '2') {   // view blockchain
             console.log("Viewing blockchain: ")
