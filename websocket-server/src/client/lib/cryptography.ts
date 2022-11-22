@@ -1,3 +1,5 @@
+import { cryptoRandom } from '../ui/common.js';
+
 export async function sha256(data: string): Promise<string> {
   const byteArray = new TextEncoder().encode(data);
   const hashAsByteArray = await crypto.subtle.digest('SHA-256', byteArray);
@@ -11,6 +13,6 @@ export async function sha256(data: string): Promise<string> {
 // https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 /** A sample implementation of the UUID generation "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" */
 export function uuid(): string {
-  const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  const s4 = () => Math.floor((1 + cryptoRandom()) * 0x10000).toString(16).substring(1);
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
