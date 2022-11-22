@@ -15,5 +15,4 @@ const httpServer = app.listen(PORT, () => {
 });
 const wsServer = new WebSocket.Server({ server: httpServer }); // start Web server (both HTTP and WS)
 const bcServer = new blockchain_server_1.BlockchainServer(wsServer); // start blockchain notification server
-// new BlockchainServer(wsServer); // start blockchain notification server
 //# sourceMappingURL=main.js.map
