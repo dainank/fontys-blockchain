@@ -52,13 +52,18 @@ export class Application implements Renderable<void> {
   }
 
   private get statusLine(): TemplateResult {
+    let htmlText;
+    if (this.node.chainIsEmpty) {
+      htmlText = '⏳ Initializing the blockchain...';
+    } else if (this.node.isMining) {
+      htmlText = '⏳ Mining a new block...';
+    } else if (this.node.noPendingTransactions) {
+      htmlText = '📩 Add one or more transactions.';
+    } else {
+      htmlText = '✅ Ready to mine a new block.';
+    }
     return html`
-      <p>${
-        this.node.chainIsEmpty          ? '⏳ Initializing the blockchain...' :
-        this.node.isMining              ? '⏳ Mining a new block...' :
-        this.node.noPendingTransactions ? '📩 Add one or more transactions.' :
-                                          '✅ Ready to mine a new block.'
-      }</p>
+      <p>${htmlText}</p>
     `;
   }
 
