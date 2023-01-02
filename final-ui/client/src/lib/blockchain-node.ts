@@ -126,8 +126,21 @@ export class BlockchainNode {
   }
 }
 
+export function cryptoRandom(){
+  // return a crypto generated number
+  // between 0 and 1 (0 inclusive, 1 exclusive);
+  // Mimics the Math.random function in range of results
+  const array = new Uint32Array(1),
+    max = Math.pow(2, 32), // normally the max is 2^32 -1 but we remove the -1
+                           //  so that the max is exclusive
+    randomValue = window.crypto.getRandomValues(array)[0] / max;
+
+    return randomValue;
+}
+
+
 export function randomDelay(maxMilliseconds: number = 100): Promise<void> {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(), Math.floor(Math.random() * Math.floor(maxMilliseconds)));
+    setTimeout(() => resolve(), Math.floor(cryptoRandom() * Math.floor(maxMilliseconds)));
   });
 }
